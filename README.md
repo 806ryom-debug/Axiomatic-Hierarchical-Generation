@@ -10,7 +10,7 @@ A minimal numerical realization of the **General Theory of Hierarchical Generati
 
 ## 📈 Autonomous Self-Organization (Simulation Result)
 
-![W-S-T Dynamics](./wst_simulation.png)
+![W-S-T Dynamics](./2step.png)
 
 When running this code, the three fundamental modes—**Wave (W)**, **Space (S)**, and **Time (T)**—feed into each other's gradients in a self-referential loop (an Uroboros structure). Even without explicit external growth factors, the system internally generates a **stable, expanding spiral trajectory**, breaking through predefined saturation limits.
 
