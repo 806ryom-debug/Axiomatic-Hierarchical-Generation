@@ -1,6 +1,6 @@
 # 🌀 Axiomatic-Hierarchical-Generation (W-S-T Uroboros Model)
 
-[![DOI](https://zenodo.org/badge/22151319.svg)](https://zenodo.org/badge/latestdoi/22151319)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22151319.svg)](https://doi.org/10.5281/zenodo.22151319)
 
 A minimal numerical realization of the **General Theory of Hierarchical Generation**. This repository contains the source code for the **W-S-T (Wave-Space-Time) Closed-Loop Gradient Model**, demonstrating self-referential emergence and autonomous scale-expansion.
 
