@@ -1,92 +1,138 @@
-import numpy as np
+iimport numpy as np
 import matplotlib.pyplot as plt
 
 # =====================================================================
-# 1. Parameter Settings & Initialization (Axiomatic System)
+# 1. Parameter Settings
 # =====================================================================
 dt = 0.01
-T_max = 100
+T_max = 120
 steps = int(T_max / dt)
 
-# Saturation limits for each mode
-M_W_sat, M_S_sat, M_T_sat = 2.0, 2.0, 2.0
+mode_types = ['Wave (W)', 'Space (S)', 'Time (T)']
 
-# Initial state of Hierarchy H_n [Wave, Space, Time]
-H_n = np.array([0.2, 0.4, 0.3])
+class ModeNode:
+    def __init__(self, index, mode_type, initial_val, energy_crit=8.0):
+        self.index = index
+        self.mode_type = mode_type
+        self.val = float(initial_val)
+        self.energy_crit = energy_crit
+        
+        self.energy_pool = 0.0
+        
+        self.time_list = []
+        self.val_list = []
+        self.active = False
+        self.spawn_time = None
+        self.triggered = False
 
-# [Axiom 4] Critical scale triggering phase transition
-S_crit = 1.35  
+    def activate(self, t):
+        self.active = True
+        self.spawn_time = t
 
-# Lists for data logging
-time_list = []
-H_W_list, H_S_list, H_T_list = [], [], []
-S_n_list = []
-phase_transitions = []  # Timestamps of phase transitions
+    def update(self, t, prev_val):
+        if not self.active:
+            return False, 0.0
+
+        # ★ Minimal nonlinear oscillation dynamics
+        # d_val = -a * val + sin(prev)
+        d_val = -0.4 * self.val + np.sin(prev_val)
+
+        # ★ Dissipative energy accumulation: accumulate |val|
+        step_energy = abs(self.val) * dt
+        self.energy_pool += step_energy
+
+        self.time_list.append(t)
+        self.val_list.append(self.val)
+
+        spawn_next = False
+        seed = 0.0
+
+        # ★ When energy exceeds threshold, spawn the next mode
+        #    (seed is simply the current value)
+        if self.energy_pool >= self.energy_crit and not self.triggered:
+            self.triggered = True
+            seed = self.val
+            spawn_next = True
+
+        # Update value
+        self.val += dt * d_val
+        self.val = np.clip(self.val, -1.2, 1.2)
+
+        return spawn_next, seed
 
 # =====================================================================
-# 2. Time Evolution Loop (Implementing the Four Axioms)
+# 2. Time Evolution Loop (Minimal Hierarchical Emergence Model)
 # =====================================================================
+nodes = [ModeNode(0, mode_types[0], initial_val=0.1, energy_crit=6.0)]
+nodes[0].activate(0.0)
+
 for i in range(steps):
     t = i * dt
-    time_list.append(t)
-    H_W_list.append(H_n[0])
-    H_S_list.append(H_n[1])
-    H_T_list.append(H_n[2])
-
-    # --- 2-1. [Axiom 1] Compute Internal Variation & Natural Scale S_n ---
-    # Based on the W-S-T Ouroboros gradient interaction
-    dW = (M_T_sat - H_n[2]) - (M_S_sat - H_n[1])
-    dS = (M_W_sat - H_n[0]) - (M_T_sat - H_n[2])
-    dT = (M_S_sat - H_n[1]) - (M_W_sat - H_n[0])
+    active_nodes = [n for n in nodes if n.active]
     
-    dH_dlambda = np.array([dW, dS, dT])
-    
-    # Natural scale S_n defined as the norm of internal variations
-    S_n = np.linalg.norm(dH_dlambda)
-    S_n_list.append(S_n)
+    for idx, node in enumerate(active_nodes):
+        # External perturbation for the first mode (simple sine wave)
+        if idx > 0:
+            prev_val = active_nodes[idx - 1].val
+        else:
+            prev_val = np.sin(t)
 
-    # --- 2-2. [Axiom 4] Phase Transition & Structural Discontinuity ---
-    if S_n >= S_crit:
-        phase_transitions.append(t)
+        spawn, seed = node.update(t, prev_val)
         
-        # 1. Discontinuous structural jump (mapping to a new macro state)
-        H_next_direction = -dH_dlambda / (S_n + 1e-8) 
-        H_n = H_n + H_next_direction * 2.0  
-        
-        # 2. Energy reset via structural memory dissipation (R_n)
-        H_n = np.tanh(H_n) * 0.5  
-        
-    else:
-        # --- 2-3. [Axiom 2 & 3] Continuous Hierarchical Generation ---
-        H_next_direction = dH_dlambda / (S_n + 1e-8)
-        H_n += dt * H_next_direction
+        # Spawn next mode when threshold is reached (W → S → T → W → …)
+        if spawn and len(nodes) < 6:
+            next_idx = len(nodes)
+            next_type = mode_types[next_idx % 3]
+            
+            # Increase threshold slightly for higher layers
+            new_node = ModeNode(
+                next_idx,
+                next_type,
+                initial_val=seed,
+                energy_crit=6.0 + next_idx * 2.0
+            )
+            new_node.activate(t)
+            nodes.append(new_node)
 
 # =====================================================================
 # 3. Visualization
 # =====================================================================
-fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(11, 7), sharex=True)
+fig, axes = plt.subplots(len(nodes), 1, figsize=(12, 1.8 * len(nodes)), sharex=True)
+if len(nodes) == 1:
+    axes = [axes]
 
-# Top Plot: W-S-T Hierarchy State Evolution
-ax1.plot(time_list, H_W_list, label="Wave (W)", color="purple")
-ax1.plot(time_list, H_S_list, label="Space (S)", color="teal")
-ax1.plot(time_list, H_T_list, label="Time (T)", color="coral")
-for pt in phase_transitions:
-    ax1.axvline(x=pt, color="red", linestyle="--", alpha=0.4)
-ax1.set_ylabel("Hierarchy State H_n")
-ax1.set_title("Evolution of H_n with Axiomatic Phase Transitions")
-ax1.legend()
-ax1.grid(True)
+colors = {'Wave (W)': 'purple', 'Space (S)': 'teal', 'Time (T)': 'coral'}
 
-# Bottom Plot: Natural Scale S_n Transition & Reset
-ax2.plot(time_list, S_n_list, label="Natural Scale S_n", color="black", linewidth=1.5)
-ax2.axhline(y=S_crit, color="red", linestyle=":", label="Critical Scale S_crit")
-for pt in phase_transitions:
-    ax2.axvline(x=pt, color="red", linestyle="--", alpha=0.4, label="Phase Transition" if pt == phase_transitions[0] else "")
-ax2.set_xlabel("Time")
-ax2.set_ylabel("Scale Norm ||S_n||")
-ax2.set_title("Natural Scale Congestion and Structural Jumps")
-ax2.legend()
-ax2.grid(True)
+for idx, node in enumerate(nodes):
+    ax = axes[idx]
+    c = colors.get(node.mode_type, 'black')
+    
+    ax.plot(
+        node.time_list,
+        node.val_list,
+        label=f"Mode {idx}: {node.mode_type} (Spawn: {node.spawn_time:.1f})",
+        color=c,
+        linewidth=1.5
+    )
+    
+    if node.spawn_time is not None and node.spawn_time > 0:
+        ax.axvline(
+            x=node.spawn_time,
+            color="blue",
+            linestyle=":",
+            alpha=0.7,
+            label="Spawn Point"
+        )
+
+    ax.set_ylabel(f"M_{idx}")
+    ax.legend(loc="upper left", fontsize=8)
+    ax.grid(True)
+
+axes[0].set_title("Minimal Hierarchical Emergence via Energy Accumulation")
+axes[-1].set_xlabel("Time")
+plt.tight_layout()
+plt.show()
+
 
 plt.tight_layout()
 plt.show()
