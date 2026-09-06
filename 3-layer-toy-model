@@ -1,0 +1,112 @@
+import numpy as np
+from scipy.integrate import solve_ivp
+import matplotlib.pyplot as plt
+
+# ===== 1. Parameter Settings =====
+# Layer 1 (Micro-scale: Sharp pulse response)
+R1_base, L1, C1 = 15.0, 1.0, 0.5
+# Layer 2 (Meso-scale: Pulse envelope & energy accumulation)
+R2, L2, C2 = 2.0, 5.0, 2.0
+# Layer 3 (Macro-scale: Ultra-low frequency reservoir / Spontaneous oscillation)
+R3, L3, C3 = 0.1, 50.0, 10.0  # Increased L and C to generate "ultra-slow waves"
+
+K12 = 0.5   # Coupling coefficient between Layer 1 and Layer 2
+K23 = 0.3   # Coupling coefficient between Layer 2 and Layer 3
+alpha = 0.4 # Strength of top-down modulation (Layer 3 -> Layer 1)
+
+# External pulse current input (mimicking Hydra sensory inputs or real spike data)
+def Iin_pulse(t):
+    # Simulating burst (consecutive) inputs at t=10 and t=100
+    if (10.0 <= t <= 12.0) or (13.5 <= t <= 15.0):
+        return 8.0
+    if (100.0 <= t <= 102.0) or (103.5 <= t <= 105.0):
+        return 8.0
+    return 0.0
+
+# ===== 2. 3-Layer Hierarchical System Equations =====
+# State variables: x = [q1, i1, q2, i2, q3, i3]
+def layered_brain_system(t, x):
+    q1, i1, q2, i2, q3, i3 = x
+
+    # Capacitor voltages in each layer (physical state variables)
+    Vc1 = q1 / C1
+    Vc2 = q2 / C2
+    Vc3 = q3 / C3
+
+    # [Top-down Modulation] The macro wave from Layer 3 (Vc3) modulates the intrinsic scale (resistance) of Layer 1 from the denominator.
+    # When Vc3 swings positive, the resistance (energy dissipation rate) of Layer 1 decreases, allowing pulses to pass through more easily.
+    R1_dynamic = R1_base / (1.0 + alpha * Vc3)
+
+    # [Dissipation Calculation (R_n)] Irreversible thermal loss due to resistance in each layer (proportional to current squared)
+    # Layer 2 utilizes the "dissipation norm (absolute value)" of Layer 1's raw pulses as its energy source.
+    dissipation_R1 = R1_dynamic * (i1**2)
+    
+    # Minute thermal noise within the brain (spontaneous fluctuations driving sustained fractal waves)
+    # The massive circuit of Layer 3 (L3, C3) filters out its preferred low frequencies from this noise to maintain its continuous oscillation.
+    brain_noise = np.random.normal(0, 0.05)
+
+    # --- Layer 1 Equations (Micro-scale voltage pulses) ---
+    dq1_dt = i1
+    # Directly inject the pulse current Iin into the di/dt (acceleration of change) term
+    di1_dt = (- R1_dynamic * i1 - Vc1 - K12 * (Vc1 - Vc2) + Iin_pulse(t)) / L1
+
+    # --- Layer 2 Equations (Meso-scale envelope waves) ---
+    dq2_dt = i2
+    # Smoothly integrate the pulse outline (envelope) using Layer 1's dissipation (absolute value) as a bottom-up input
+    di2_dt = (- R2 * i2 - Vc2 + K12 * (Vc1 - Vc2) - K23 * (Vc2 - Vc3) + 2.0 * np.abs(i1)) / L2
+
+    # --- Layer 3 Equations (Macro-scale global fractal waves) ---
+    dq3_dt = i3
+    # No external sine waves applied. Sustained slow waves are spontaneously generated solely via propagation from Layer 2 and intrinsic resonance from minute noise.
+    di3_dt = (- R3 * i3 - Vc3 + K23 * (Vc2 - Vc3) + brain_noise) / L3
+
+    return [dq1_dt, di1_dt, dq2_dt, di2_dt, dq3_dt, di3_dt]
+
+# ===== 3. Simulation Execution =====
+x0 = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+t_span = (0, 180)
+t_eval = np.linspace(t_span[0], t_span[1], 4000)
+
+# Slightly relaxed atol/rtol for stabilization since the model includes noise (approximating a stochastic differential equation)
+sol = solve_ivp(layered_brain_system, t_span, x0, t_eval=t_eval, method='RK45', rtol=1e-5, atol=1e-7)
+
+t = sol.t
+q1, i1, q2, i2, q3, i3 = sol.y
+Vc1 = q1 / C1
+Vc2 = q2 / C2
+Vc3 = q3 / C3
+
+# ===== 4. Visualization of Ideal Waveforms =====
+plt.figure(figsize=(12, 10))
+
+# Top: External pulse input
+plt.subplot(4, 1, 1)
+plt.plot(t, [Iin_pulse(tt) for tt in t], color="black", lw=1.5)
+plt.title("Input Pulse Current (External Signal / Hydra Spike Data)")
+plt.ylabel("Iin (A)")
+plt.grid(True)
+
+# Second: Layer 1 (Micro spike voltage)
+plt.subplot(4, 1, 2)
+plt.plot(t, Vc1, color="blue", label="Layer 1: Vc1 (Micro Spike / Voltage)")
+plt.legend(loc="upper right")
+plt.ylabel("Voltage (V)")
+plt.grid(True)
+
+# Third: Layer 2 (Meso envelope current wave)
+plt.subplot(4, 1, 3)
+plt.plot(t, i2, color="orange", label="Layer 2: i2 (Local Ensemble / Envelope)")
+plt.legend(loc="upper right")
+plt.ylabel("Current (A)")
+plt.grid(True)
+
+# Bottom: Layer 3 (Macro sustained fractal wave)
+plt.subplot(4, 1, 4)
+plt.plot(t, Vc3, color="red", label="Layer 3: Vc3 (Global Macro Wave / Context)")
+plt.legend(loc="upper right")
+plt.ylabel("Voltage (V)")
+plt.xlabel("Time (t)")
+plt.grid(True)
+
+plt.tight_layout()
+plt.show()
