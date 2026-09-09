@@ -1,64 +1,38 @@
-# 🌀 Axiomatic-Hierarchical-Generation (W-S-T Uroboros Model)
+# General Theory of Hierarchical Generation: Financial Market Stress Propagation
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22151319.svg)](https://doi.org/10.5281/zenodo.22151319)
+This branch houses the pilot application of the **General Theory of Hierarchical Generation** to macroeconomic and financial market dynamics, focusing on systemic stress propagation during crises (specifically calibrated around the 2008 Lehman Shock era)[cite: 1].
 
-A minimal numerical realization of the **General Theory of Hierarchical Generation**. This repository contains the source code for the **W-S-T (Wave-Space-Time) Closed-Loop Gradient Model**, demonstrating self-referential emergence and autonomous scale-expansion.
+## Overview
 
-> **"Calculus is not just a horizontal tool for continuous spaces; it is a vertical elevator for shifting across distinct hierarchical dimensions."**
+Traditional economic and financial models often treat market crashes as linear random walks or rely on statistical regressions (like VAR or GARCH) without accounting for structural limits or the emergence of abstract higher-level states. 
+
+This model redefines financial systems through a physical and thermodynamic lens:
+* **Multi-Layer RLC Structure**: Markets are modeled as layered circuits where variables (e.g., VIX, TED Spread, CDS) represent distinct conceptual tiers with specific inertias (capacitance/inductance) and damping (dissipation).
+* **Saturation-Driven Dynamics**: Moving away from standard linear coupling, the system incorporates saturation thresholds ($S_{\mathrm{crit}}$) where approaching critical limits drives discontinuous transitions and cross-layer information flow[cite: 1].
 
 ---
+
+## Repository Structure (`financial-model` branch)
+
+* `models/` : Implementation of the non-linear saturation and RLC differential equation systems.
+* `data/` : Historical market stress data (2007–2011 period).
+* `notebooks/` : Simulation scripts utilizing robust numerical solvers (e.g., `RK45`, `Radau`) for time-series fitting.
+
+---
+
+## Core Theoretical Concept
+
+1. **Dissipation as Information/Structure ($R_n$)**: Drawing from the broader hierarchical generation theory, structural degradation and loss at lower layers ($H_n$) sediment into actionable meaning or systemic shifts at higher layers ($H_{n+1}$)[cite: 1].
+2. **Adaptive Feedback**: High-tier stress dynamics dynamically alter the conductive parameters (resistance) of lower tiers, modeling realistic systemic feedback loops.
+
+## Future Outlook
+
+This economic application serves as the first empirical proof of concept. Future expansions of this framework will explore hierarchical generation in other complex domains (e.g., cognitive architectures and organizational structures).
 
 ## 📈 Autonomous Self-Organization (Simulation Result)
+![theory](./therory.png)
+![RCL](./RCL_fit.png)
 
-![W-S-T Dynamics](./2step.png)
 
-When running this code, the three fundamental modes—**Wave (W)**, **Space (S)**, and **Time (T)**—feed into each other's gradients in a self-referential loop (an Uroboros structure). Even without explicit external growth factors, the system internally generates a **stable, expanding spiral trajectory**, breaking through predefined saturation limits.
-
----
-
-## 🧠 Core Theoretical Architecture
-
-This model is mathematically grounded in the core axioms of the general theory:
-
-1. **Natural Scale ($S_n$):** 
-   $$S_n = \left\| \frac{\partial H_n}{\partial \lambda_n} \right\|$$
-   The internal rate of change itself creates the metric of the hierarchy.
-2. **Hierarchical Generation:** 
-   $$H_{n+1} = \frac{\partial H_n}{\partial S_n}$$
-   Moving upward to the next abstract layer is formulated as scale-normalized differentiation.
-3. **Dissipation / Structural Memory ($R_n$):** 
-   $$R_n = H_n - S_n H_{n+1}$$
-   The residual component that cannot be absorbed by the upper layer precipitates as latent memory (e.g., material stress, organizational culture, or the cognitive unconscious).
-
----
-
-## 🛠️ Getting Started
-
-### Prerequisites
-- Python 3.x
-- NumPy
-- Matplotlib
-
-### Execution
-Simply clone the repository and run the simulation script to witness the self-referential phase evolution:
-
-```bash
-git clone https://github.com
-cd Axiomatic-Hierarchical-Generation
-python wst_simulation.py
-```
-
-## 🚀 Future Horizons & Contributions
-This toy model serves as the foundational mathematical baseline. We are currently tuning this closed-loop system toward:
-
-Concrete connections to existing physics (e.g., wave–space–time–particle–information hierarchies)
-Applications to generative models of cosmic origin (the emergence of the universe)
-Hierarchical approaches toward a unified theory of forces
-Applications to neural networks and generative AI
-Applications to complex hierarchical systems (such as cognition, language, and life)
-
-Feel free to fork, experiment with parameters (e.g., `input_energy`, `grad_weight`), and explore the boundaries where this beautiful order collapses into chaos or shifts into higher dimensions.
-
----
 **Author:** Independent Researcher  
 **Full Abstract Paper:** Accessible via the Zenodo DOI badge above.
