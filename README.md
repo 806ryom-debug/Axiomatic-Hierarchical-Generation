@@ -1,6 +1,7 @@
 ![5toy](./5toy_2_3_4_pulse.png)
 ![5toy-sum](./5toy_2_3_4_pulse_sum.png)
 ![20_phase](./20_階層相図.png)
+![simple](./simple_2.png)
 
 # Multi-Layer Complex Systems Toy Model
 
