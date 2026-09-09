@@ -1,64 +1,77 @@
-# 🌀 Axiomatic-Hierarchical-Generation (W-S-T Uroboros Model)
+![5toy](./5toy_2_3_4_pulse.png)
+![5toy-sum](./5toy_2_3_4_pulse_sum.png)
+![20_phase](./20_階層相図.png)
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22151319.svg)](https://doi.org/10.5281/zenodo.22151319)
+# Multi-Layer Complex Systems Toy Model
 
-A minimal numerical realization of the **General Theory of Hierarchical Generation**. This repository contains the source code for the **W-S-T (Wave-Space-Time) Closed-Loop Gradient Model**, demonstrating self-referential emergence and autonomous scale-expansion.
+This repository contains a Python-based simulation framework for a **Multi-Layer Coupled Non-Linear Circuit System**, designed to model hierarchical information processing, bottom-up emergence, and top-down modulation inspired by complex systems and cognitive dynamics.
 
-> **"Calculus is not just a horizontal tool for continuous spaces; it is a vertical elevator for shifting across distinct hierarchical dimensions."**
+## 🌟 Overview
 
----
+The model simulates a chain of $N$-layered RL/RC-like coupled circuits where:
 
-## 📈 Autonomous Self-Organization (Simulation Result)
-
-![W-S-T Dynamics](./2step.png)
-
-When running this code, the three fundamental modes—**Wave (W)**, **Space (S)**, and **Time (T)**—feed into each other's gradients in a self-referential loop (an Uroboros structure). Even without explicit external growth factors, the system internally generates a **stable, expanding spiral trajectory**, breaking through predefined saturation limits.
-
----
-
-## 🧠 Core Theoretical Architecture
-
-This model is mathematically grounded in the core axioms of the general theory:
-
-1. **Natural Scale ($S_n$):** 
-   $$S_n = \left\| \frac{\partial H_n}{\partial \lambda_n} \right\|$$
-   The internal rate of change itself creates the metric of the hierarchy.
-2. **Hierarchical Generation:** 
-   $$H_{n+1} = \frac{\partial H_n}{\partial S_n}$$
-   Moving upward to the next abstract layer is formulated as scale-normalized differentiation.
-3. **Dissipation / Structural Memory ($R_n$):** 
-   $$R_n = H_n - S_n H_{n+1}$$
-   The residual component that cannot be absorbed by the upper layer precipitates as latent memory (e.g., material stress, organizational culture, or the cognitive unconscious).
+* **Micro-level layers** (e.g., Layer 1–2) handle sharp, high-frequency local pulse inputs.
+* **Mid-level layers** integrate and transform the dissipated energy from lower layers into contextual representations.
+* **Macro-level top layers** (e.g., Layer 5 or 20) act as global wave generators that capture overall system trends.
+* **Top-down feedback** is implemented dynamically—the state of the highest layer modulates the resistance/impedance of the lowest layer (e.g., $R_{1\_dynamic} = R_{1\_base} / (1 + \alpha V_{c, top})$), creating a non-linear adaptive loop.
 
 ---
 
-## 🛠️ Getting Started
+## 📂 Key Features & Scripts
+
+1. **5-Layer Toy Model (`5_layer_simulation.py`)**
+* Multi-frequency pulse inputs across individual layers.
+* Real-time visualization of micro-spikes evolving into smooth macro-waves.
+* **Hierarchical Phase Diagram Generation**: A world-first-style phase map sweeping input intensity against layer depth to visualize energy propagation and dissipation across the hierarchy.
+
+
+2. **20-Layer Scaled Model (`20_layer_simulation.py`)**
+* Scaled-up deep architecture demonstrating deep-layer wave propagation and structural stability under high-dimensional coupling.
+
+
+
+---
+
+## 📊 Visualizations
+
+* **Waveform Dynamics**: Tracks how sharp pulses at the input layer transform into fractal-like global macro-waves at the top layer.
+* **Hierarchical Phase Diagrams (Heatmaps)**: Visualizes the voltage standard deviation (activity intensity) across layers as a function of input pulse strength.
+
+---
+
+## 🚀 Getting Started
 
 ### Prerequisites
-- Python 3.x
-- NumPy
-- Matplotlib
 
-### Execution
-Simply clone the repository and run the simulation script to witness the self-referential phase evolution:
+Make sure you have Python installed along with the required scientific computing libraries:
 
 ```bash
-git clone https://github.com
-cd Axiomatic-Hierarchical-Generation
-python wst_simulation.py
+pip install numpy scipy matplotlib
+
 ```
 
-## 🚀 Future Horizons & Contributions
-This toy model serves as the foundational mathematical baseline. We are currently tuning this closed-loop system toward:
+### Running the Simulation
 
-Concrete connections to existing physics (e.g., wave–space–time–particle–information hierarchies)
-Applications to generative models of cosmic origin (the emergence of the universe)
-Hierarchical approaches toward a unified theory of forces
-Applications to neural networks and generative AI
-Applications to complex hierarchical systems (such as cognition, language, and life)
+```bash
+python 5_layer_simulation.py
+# or for the 20-layer scaled version
+python 20_layer_simulation.py
 
-Feel free to fork, experiment with parameters (e.g., `input_energy`, `grad_weight`), and explore the boundaries where this beautiful order collapses into chaos or shifts into higher dimensions.
+```
 
 ---
-**Author:** Independent Researcher  
-**Full Abstract Paper:** Accessible via the Zenodo DOI badge above.
+
+## 🛠️ Core Mathematical Structure
+
+For each layer $n$:
+
+
+$$\frac{dq_n}{dt} = i_n$$
+
+$$\frac{di_n}{dt} = \frac{1}{L_n} \left( -R_n i_n - V_{c,n} + K_{n-1,n}(V_{c,n-1} - V_{c,n}) - K_{n,n+1}(V_{c,n} - V_{c,n+1}) + \text{Dissipation Terms} + \text{Pulse}(t) \right)$$
+
+---
+
+## 📄 License
+
+This project is open-source and intended for exploratory research into complex systems dynamics.
