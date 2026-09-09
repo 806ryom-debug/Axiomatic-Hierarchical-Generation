@@ -30,7 +30,7 @@ This model redefines financial systems through a physical and thermodynamic lens
 This economic application serves as the first empirical proof of concept. Future expansions of this framework will explore hierarchical generation in other complex domains (e.g., cognitive architectures and organizational structures).
 
 ## 📈 Autonomous Self-Organization (Simulation Result)
-![theory](./therory.png)
+![theory](./theory.png)
 ![RCL](./RCL_fit.png)
 
 
