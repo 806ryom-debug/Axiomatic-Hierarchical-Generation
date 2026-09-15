@@ -10,52 +10,70 @@ A minimal numerical realization of the **General Theory of Hierarchical Generati
 
 ## 📈 Autonomous Self-Organization (Simulation Result)
 
-![W-S-T Dynamics](./2step.png)
+![yuragi](./yuragi.png)
 
-When running this code, the three fundamental modes—**Wave (W)**, **Space (S)**, and **Time (T)**—feed into each other's gradients in a self-referential loop (an Uroboros structure). Even without explicit external growth factors, the system internally generates a **stable, expanding spiral trajectory**, breaking through predefined saturation limits.
+# Network Evolution Dynamics: Self-Referential Growth and Multistable Fluctuations
 
----
+This repository contains the numerical verification model for the companion paper of the **"General Theory of Hierarchical Generation" (Muramoto, 2026)**. 
 
-## 🧠 Core Theoretical Architecture
+The simulation explores how a minimal self-referential growth rule ($quota = c \cdot Degree$) in a closed graph space triggers discrete macroscopic topological phase transitions, emergent multi-stability, and structured fluctuation profiles.
 
-This model is mathematically grounded in the core axioms of the general theory:
+## 🌟 Overview & Core Insights
 
-1. **Natural Scale ($S_n$):** 
-   $$S_n = \left\| \frac{\partial H_n}{\partial \lambda_n} \right\|$$
-   The internal rate of change itself creates the metric of the hierarchy.
-2. **Hierarchical Generation:** 
-   $$H_{n+1} = \frac{\partial H_n}{\partial S_n}$$
-   Moving upward to the next abstract layer is formulated as scale-normalized differentiation.
-3. **Dissipation / Structural Memory ($R_n$):** 
-   $$R_n = H_n - S_n H_{n+1}$$
-   The residual component that cannot be absorbed by the upper layer precipitates as latent memory (e.g., material stress, organizational culture, or the cognitive unconscious).
+Traditional network science (e.g., the Barabási–Albert model) often relies on open systems (node influx) and statistical averaging to explain hub formation, treating microscopic fluctuations as mere noise to be eliminated. 
+
+In contrast, this project uncovers a profound paradigm: **Macroscopic topological fluctuations (wave-like multi-stability) are not random errors, but a structural necessity for information retention ("memory pockets")** born from the collision between continuous growth dynamics and discrete graph space.
 
 ---
 
-## 🛠️ Getting Started
+## 🔬 Core Hypotheses & Perspectives
 
-### Prerequisites
-- Python 3.x
-- NumPy
-- Matplotlib
+### 1. Complex Systems Perspective (Macroscopic Phase Dynamics)
+* **The Fluctuation as a Function**: The wave-like behavior of the community counts implies that the system does not settle into a single rigid topology. Instead, it maintains **multi-stability**, allowing it to host diverse structural states under identical macro-parameters.
+* **Semantic Sedimentation**: These fluctuating valleys act as "memory pockets." The resilience of the fluctuation profile under ensemble averaging directly physically verifies the concept of *Dissipation Accumulation* introduced in the general theory.
 
-### Execution
-Simply clone the repository and run the simulation script to witness the self-referential phase evolution:
+### 2. Network Theory Perspective (Topological Congestion)
+* **Finite System Size Clash**: The peak of fluctuation potential (Standard Deviation) represents a deterministic congestion phase. It occurs precisely when the rapid growth of hub nodes collides with the hard geometric boundary of the system size ($N=300$).
+* **Intrinsic Scale Constraint**: The functional form of growthポテンシャル (e.g., Linear vs. Sqrt) algebraically constrains the specific parameter region ($c$) where the system achieves maximum flexibility.
 
+---
+
+## 📊 Key Findings
+
+By sweeping the scale coefficient $c$ from `0.20` to `0.40` over **100 independent random seeds (Ensemble Averaging)**, the simulation reveals an extraordinary dual-axis profile:
+
+1. **Mean Community Count (Blue)**: Shows a non-monotonic, multi-peaked wave instead of a smooth monotonic decay, indicating discrete structural reconfiguration regions.
+2. **Fluctuation Potential / Std Dev (Purple)**: Exhibits a sharp global peak around $c=0.22$, followed by localized multi-resonance spikes (e.g., $c=0.26, 0.28, 0.32$). This proves that the system's structural flexibility is maximized at specific intrinsic scales dictated by its self-referential function form.
+
+---
+
+## 💻 Getting Started
+
+### Dependencies
+Ensure you have the following Python libraries installed:
 ```bash
-git clone https://github.com
-cd Axiomatic-Hierarchical-Generation
-python wst_simulation.py
+pip install numpy matplotlib networkx
 ```
 
-## 🚀 Future Horizons & Contributions
-This toy model serves as the foundational mathematical baseline. We are currently tuning this closed-loop system toward:
+### Usage
+Run the fine-sweep analysis script to generate the Mean vs. Fluctuation Potential plot:
+```bash
+python network_fluctuation_sweep.py
+```
 
-Concrete connections to existing physics (e.g., wave–space–time–particle–information hierarchies)
-Applications to generative models of cosmic origin (the emergence of the universe)
-Hierarchical approaches toward a unified theory of forces
-Applications to neural networks and generative AI
-Applications to complex hierarchical systems (such as cognition, language, and life)
+---
+
+## 📜 Citation & Theoretical Foundation
+
+This numerical implementation directly grounds the abstract operator algebra defined in:
+
+> **Muramoto, R. (2026).** *General Theory of Hierarchical Generation.*
+> * **Axiom 1 & 2**: Self-referential scale-derivative operators ($quota = c \cdot H_n$).
+> * **Axiom 4**: Critical Discontinuity and phase-transition-like activation when the intrinsic scale approaches the system's saturation boundary ($S_n \to S_{crit}$).
+
+---
+*Developed by Ryo Muramoto. Exploring the self-organizing geometry of complex systems.*
+
 
 Feel free to fork, experiment with parameters (e.g., `input_energy`, `grad_weight`), and explore the boundaries where this beautiful order collapses into chaos or shifts into higher dimensions.
 
