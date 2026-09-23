@@ -1,64 +1,65 @@
-# 🌀 Axiomatic-Hierarchical-Generation (W-S-T Uroboros Model)
+![emergent-variable-growth](./emergent-variable-growth.png)
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22151319.svg)](https://doi.org/10.5281/zenodo.22151319)
+# Emergence of Variables via Gauge-Switching: Covariant Multiscale Dynamics
 
-A minimal numerical realization of the **General Theory of Hierarchical Generation**. This repository contains the source code for the **W-S-T (Wave-Space-Time) Closed-Loop Gradient Model**, demonstrating self-referential emergence and autonomous scale-expansion.
+This project introduces a mathematical and physical simulation framework that embeds the concept of **"Gauge-Covariant Differentiation"**—derived from quantum field theory and particle physics—into a macro-micro interacting system to verify the emergent generation of novel hierarchical layers in complex systems.
 
-> **"Calculus is not just a horizontal tool for continuous spaces; it is a vertical elevator for shifting across distinct hierarchical dimensions."**
-
----
-
-## 📈 Autonomous Self-Organization (Simulation Result)
-
-![W-S-T Dynamics](./2step.png)
-
-When running this code, the three fundamental modes—**Wave (W)**, **Space (S)**, and **Time (T)**—feed into each other's gradients in a self-referential loop (an Uroboros structure). Even without explicit external growth factors, the system internally generates a **stable, expanding spiral trajectory**, breaking through predefined saturation limits.
+Rather than relying on artificial, exogenous reset mechanisms, this system leverages a continuous **"Spatiotemporal Differentiation and Integration Cycle"** alongside a set of interactions analogous to **"The Four Fundamental Forces of Nature (including Phase-Transition Switching)"**. Through the tension of these elements, the system autonomously co-sustains macro-level focused states (hierarchical emergence) and micro-level 1/f fluctuations (self-organized criticality).
 
 ---
 
-## 🧠 Core Theoretical Architecture
+## 🌀 Core Concept 1: Hierarchical Emergence via Spatiotemporal Calculus Cycles
 
-This model is mathematically grounded in the core axioms of the general theory:
+The dynamics of complex systems within this simulator are driven by an endless loop weaving together **[Spatial Integration, Spatial Differentiation, Temporal Differentiation, and Temporal Integration]**, giving rise to a bottom-up hierarchical emergence from micro-elements to macro-orders.
 
-1. **Natural Scale ($S_n$):** 
-   $$S_n = \left\| \frac{\partial H_n}{\partial \lambda_n} \right\|$$
-   The internal rate of change itself creates the metric of the hierarchy.
-2. **Hierarchical Generation:** 
-   $$H_{n+1} = \frac{\partial H_n}{\partial S_n}$$
-   Moving upward to the next abstract layer is formulated as scale-normalized differentiation.
-3. **Dissipation / Structural Memory ($R_n$):** 
-   $$R_n = H_n - S_n H_{n+1}$$
-   The residual component that cannot be absorbed by the upper layer precipitates as latent memory (e.g., material stress, organizational culture, or the cognitive unconscious).
+1. **Spatial Integration (Extraction of Macro Context)**
+   By spatially aggregating the absolute activity values of individual micro-elements, the system extracts the "Macro Context" (the global average of system energy) that envelops the entire field.
+2. **Self-Referential Feedback (Dynamic Sensitivity Modulation)**
+   In response to the magnitude of this extracted Macro Context, the "reconciliation threshold (sensitivity)" of the gauge switches dynamically modulates via a sinusoidal function.
+3. **Spatial Differentiation (Difference Calculus via Gauge-Switching)**
+   The states of adjacent elements are calculated by taking their difference *after* parallel-transporting (rotating) them through their local, uniquely configured criteria (Gauge Switch \(W\)). This mathematically embeds the structural tension or "distortion of relationships" into the spatial derivative rather than computing a simple arithmetic difference.
+4. **Temporal Integration (Cumulative State Updates)**
+   The total sum of relational distortions computed via spatial differentiation accumulates over time (Temporal Integration), acting directly as the driving acceleration/force pushing the micro-elements into their next temporal states.
 
 ---
 
-## 🛠️ Getting Started
+## ⚛️ Core Concept 2: Autonomous Variable Propagation and "The Four Fundamental Forces"
 
-### Prerequisites
-- Python 3.x
+When the structural tension within the spatiotemporal calculus cycle reaches a critical limit, the system dynamically rewrites its own data architecture based on mechanics analogous to the fundamental interactions of particle physics.
+
+* **The Weak Interaction & Phase-Transition Switching (Variable Multiplication Trigger)**
+   The local friction of competing internal references acts as the weak force. The moment the spatial differentiation error surpasses the macro-configured threshold (`switch_threshold`), a **"Phase-Transition Switch (Spontaneous Symmetry Breaking)"** is triggered. To release the localized structural bottleneck and dissipation stress, the system decouples the old link and automatically spawns a **"new mediating variable (bypass node)"** via an autonomous cell-division process. This serves as the structural engine for hierarchical evolution.
+* **Gravitational Interaction (Dissipation & Variable Pruning)**
+   While the entire system is continuously subjected to baseline thermal jitter (micro-noise/differentiation), variables that become overly synchronized with their neighbors—causing their absolute activity to drop to zero—are automatically pruned (annihilated). This acts as a foundational stabilization force, shedding redundant energy and maintaining metabolic efficiency while preventing full systemic collapse.
+* **Electromagnetic & Strong Interactions (Structural Cohesion & Wave Propagation)**
+   Newly generated variables are seamlessly integrated into the network topology (e.g., ring topology) between the original nodes (\(i \rightarrow j\)). They function to maintain structural integrity against external dispersion while optimizing the propagation speed (`C_WAVE`) of information packets across the network.
+
+---
+
+## 📊 Interpretation of Simulation Results
+
+Running the simulation script generates a two-tiered multiscale analysis visualization:
+
+1. **Top Panel: Dynamic Variables (Node Count)**
+   Visualizes the process of the system autonomously expanding its own capacity. Starting from an initial configuration of 10 nodes, it demonstrates how the system size scales up non-linearly and exponentially every time the micro-distortions break through the critical threshold.
+2. **Bottom Panel: Macro Context (System Energy)**
+   Tracks the global spatial mean of system activity. During phases of explosive variable growth (phase transition), the macro-level energy forms a well-regulated plateau with complex fluctuations, proving that the system self-tunes into a state of self-organized criticality.
+
+---
+
+## 🛠 Prerequisites & Dependencies
+
+- Python 3.8+
 - NumPy
 - Matplotlib
 
-### Execution
-Simply clone the repository and run the simulation script to witness the self-referential phase evolution:
+---
+
+## 🚀 Usage
+
+Clone the repository and run the main script to initiate the spatiotemporal dynamic rewriting loop and visualize the self-propagating system dynamics.
 
 ```bash
-git clone https://github.com
-cd Axiomatic-Hierarchical-Generation
-python wst_simulation.py
+python main.py
 ```
 
-## 🚀 Future Horizons & Contributions
-This toy model serves as the foundational mathematical baseline. We are currently tuning this closed-loop system toward:
-
-Concrete connections to existing physics (e.g., wave–space–time–particle–information hierarchies)
-Applications to generative models of cosmic origin (the emergence of the universe)
-Hierarchical approaches toward a unified theory of forces
-Applications to neural networks and generative AI
-Applications to complex hierarchical systems (such as cognition, language, and life)
-
-Feel free to fork, experiment with parameters (e.g., `input_energy`, `grad_weight`), and explore the boundaries where this beautiful order collapses into chaos or shifts into higher dimensions.
-
----
-**Author:** Independent Researcher  
-**Full Abstract Paper:** Accessible via the Zenodo DOI badge above.
