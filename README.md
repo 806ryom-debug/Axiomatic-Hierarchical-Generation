@@ -1,64 +1,14 @@
-# 🌀 Axiomatic-Hierarchical-Generation (W-S-T Uroboros Model)
+![Glass_toy_simulation](./Glass_toy.png)
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22151319.svg)](https://doi.org/10.5281/zenodo.22151319)
+🧠 Theoretical Framework & Mathematical Background
+This model numerically realizes a core General System Theory principle: discarded residues from differentiation act as integration constants that retroactively redefine macro-level rules. Streamlined into a 1D toy model of multi-body collisions, it explores Post-Hoc Variable Emergence and boundary breaches. Calculus & Emergence: Micro-level residues collide with macro-boundary conditions via integration (\[q\]). Boundary breaches trigger new variables and cross-coupling (entanglement), exploding system complexity. Boundaries & Phase Transitions: Boundaries function as coarse-grained zones, mirroring chemical neutralization titrations where macro-property shifts (like pH) are determined retroactively.
 
-A minimal numerical realization of the **General Theory of Hierarchical Generation**. This repository contains the source code for the **W-S-T (Wave-Space-Time) Closed-Loop Gradient Model**, demonstrating self-referential emergence and autonomous scale-expansion.
+🚊 Physical Metaphor: Glassification via Crowded TrainsGlass sits between liquid and solid. This model uses packed train car dynamics to illustrate how localized clusters form and freeze. Driven by momentum conservation via a UnionFind data structure, close variables cross boundaries, pool aggregate inertia, and freeze irreversibly. 
 
-> **"Calculus is not just a horizontal tool for continuous spaces; it is a vertical elevator for shifting across distinct hierarchical dimensions."**
+📊 Simulation Analytics: Potential-Free Phase TransitionsRunning wst_simulation.py demonstrates: Upper Plot (Particle Position \[q\]): Particles converge into localized strands/bundles rather than a single crystal, capturing a glass-state freeze. Lower Plot (Effective Mass \[M\]): Discontinuous step-wise increases (1 ➔ 2 ➔ 4 ➔ 8) simulate the emergence of inertia. Crucially, this model operates potential-free—freezing emerges autonomously from topological and dynamic rules without pre-configured Lennard-Jones potentials. 
 
----
-
-## 📈 Autonomous Self-Organization (Simulation Result)
-
-![W-S-T Dynamics](./2step.png)
-
-When running this code, the three fundamental modes—**Wave (W)**, **Space (S)**, and **Time (T)**—feed into each other's gradients in a self-referential loop (an Uroboros structure). Even without explicit external growth factors, the system internally generates a **stable, expanding spiral trajectory**, breaking through predefined saturation limits.
-
----
-
-## 🧠 Core Theoretical Architecture
-
-This model is mathematically grounded in the core axioms of the general theory:
-
-1. **Natural Scale ($S_n$):** 
-   $$S_n = \left\| \frac{\partial H_n}{\partial \lambda_n} \right\|$$
-   The internal rate of change itself creates the metric of the hierarchy.
-2. **Hierarchical Generation:** 
-   $$H_{n+1} = \frac{\partial H_n}{\partial S_n}$$
-   Moving upward to the next abstract layer is formulated as scale-normalized differentiation.
-3. **Dissipation / Structural Memory ($R_n$):** 
-   $$R_n = H_n - S_n H_{n+1}$$
-   The residual component that cannot be absorbed by the upper layer precipitates as latent memory (e.g., material stress, organizational culture, or the cognitive unconscious).
-
----
-
-## 🛠️ Getting Started
-
-### Prerequisites
-- Python 3.x
-- NumPy
-- Matplotlib
-
-### Execution
-Simply clone the repository and run the simulation script to witness the self-referential phase evolution:
-
-```bash
-git clone https://github.com
-cd Axiomatic-Hierarchical-Generation
-python wst_simulation.py
-```
-
-## 🚀 Future Horizons & Contributions
-This toy model serves as the foundational mathematical baseline. We are currently tuning this closed-loop system toward:
-
-Concrete connections to existing physics (e.g., wave–space–time–particle–information hierarchies)
-Applications to generative models of cosmic origin (the emergence of the universe)
-Hierarchical approaches toward a unified theory of forces
-Applications to neural networks and generative AI
-Applications to complex hierarchical systems (such as cognition, language, and life)
+🚀 Future HorizonsFuture extensions include 2D/3D dimensionality expansion for geometric frustration, finite coefficients of restitution (\(e > 0\)) for reversible cross-coupling, and integration into cosmological or neural network architectures.
 
 Feel free to fork, experiment with parameters (e.g., `input_energy`, `grad_weight`), and explore the boundaries where this beautiful order collapses into chaos or shifts into higher dimensions.
 
----
-**Author:** Independent Researcher  
-**Full Abstract Paper:** Accessible via the Zenodo DOI badge above.
+
