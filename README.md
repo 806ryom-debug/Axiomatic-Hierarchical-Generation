@@ -1,5 +1,6 @@
 Semantic Field Dynamics (Prototype)
 ![Semantic Field Engine](./WST Hierarchical Semantic Field Engine.png)
+![W-S-T Dynamics](./WST Hierarchical Semantic Field Engine.png)
 
 This repository features a prototype simulation that explores wave propagation over a semantic network, combined with the autonomous emergence of macro-level concepts.
 💡 Core Mechanics
