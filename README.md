@@ -1,7 +1,7 @@
 # 🌀 Axiomatic-Hierarchical-Generation (W-S-T Uroboros Model)
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22151319.svg)](https://doi.org/10.5281/zenodo.22151319)
-
+Created a simpler version of the theoretical abstract model and added it as main_simple.py.
 A minimal numerical realization of the **General Theory of Hierarchical Generation**. This repository contains the source code for the **W-S-T (Wave-Space-Time) Closed-Loop Gradient Model**, demonstrating self-referential emergence and autonomous scale-expansion.
 
 > **"Calculus is not just a horizontal tool for continuous spaces; it is a vertical elevator for shifting across distinct hierarchical dimensions."**
@@ -9,7 +9,7 @@ A minimal numerical realization of the **General Theory of Hierarchical Generati
 ---
 
 ## 📈 Autonomous Self-Organization (Simulation Result)
-
+![W-S-T Dynamics_simple](./main_simple.png)
 ![W-S-T Dynamics](./2step.png)
 
 When running this code, the three fundamental modes—**Wave (W)**, **Space (S)**, and **Time (T)**—feed into each other's gradients in a self-referential loop (an Uroboros structure). Even without explicit external growth factors, the system internally generates a **stable, expanding spiral trajectory**, breaking through predefined saturation limits.
